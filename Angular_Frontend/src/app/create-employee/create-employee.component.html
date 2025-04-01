@@ -1,0 +1,55 @@
+<div class="col-md-6 offset-md-3">
+    <h3>Create Employee</h3>
+    <form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
+      
+      <div class="form-group">
+        <label>First Name <span class="text-danger">*</span></label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          [(ngModel)]="employee.firstName"
+          name="firstName"
+          required
+          #firstName="ngModel"
+        />
+        <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+          First Name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          [(ngModel)]="employee.lastName"
+          name="lastName"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label>Email Id <span class="text-danger">*</span></label>
+        <input
+          type="email"
+          class="form-control"
+          id="emailId"
+          [(ngModel)]="employee.emailId"
+          name="emailId"
+          required
+          email
+          #emailId="ngModel"
+        />
+        <div *ngIf="emailId.invalid && emailId.touched" class="text-danger">
+          <span *ngIf="emailId.errors?.['required']">Email is required.</span>
+          <span *ngIf="emailId.errors?.['email']">Enter a valid email format (e.g., user@example.com).</span>
+        </div>
+      </div>
+  
+      <button class="btn btn-success" type="submit" [disabled]="employeeForm.invalid">
+        Submit
+      </button>
+    </form>
+  </div>
+  
